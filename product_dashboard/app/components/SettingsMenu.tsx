@@ -1,40 +1,46 @@
-'use client'
+'use client';
 
-import { useStore } from '../store/store'
-import { Button } from '@/components/ui/button'
+import { useStore } from '../store/store';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from '@/components/ui/dialog'
+} from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'
+} from '@/components/ui/select';
 
 interface SettingsMenuProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
-  const { userPreferences, updateUserPreferences } = useStore()
+  const { userPreferences, updateUserPreferences } = useStore();
 
   const handleThemeChange = (theme: 'light' | 'dark') => {
-    updateUserPreferences({ theme })
-  }
+    console.log('Changing theme to:', theme);
+    updateUserPreferences({ theme });
+
+    // Apply the theme to the body class (if required for styling)
+    document.body.className = theme;
+  };
 
   const handleLanguageChange = (language: string) => {
-    updateUserPreferences({ language })
-  }
+    console.log('Changing language to:', language);
+    updateUserPreferences({ language });
+  };
 
   const handleCurrencyChange = (currency: string) => {
-    updateUserPreferences({ currency })
-  }
+    console.log('Changing currency to:', currency);
+    updateUserPreferences({ currency });
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -43,6 +49,7 @@ export default function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
           <DialogTitle>Settings</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
+          {/* Theme Selection */}
           <div>
             <label className="block mb-2">Theme</label>
             <Select
@@ -58,6 +65,8 @@ export default function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
               </SelectContent>
             </Select>
           </div>
+
+          {/* Language Selection */}
           <div>
             <label className="block mb-2">Language</label>
             <Select
@@ -74,6 +83,8 @@ export default function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
               </SelectContent>
             </Select>
           </div>
+
+          {/* Currency Selection */}
           <div>
             <label className="block mb-2">Currency</label>
             <Select
@@ -94,6 +105,5 @@ export default function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-
