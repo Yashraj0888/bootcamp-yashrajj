@@ -1,0 +1,72 @@
+/* solution-3.css */
+*{
+    margin:10px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* Global styles (use the variables defined above) */
+body {
+    font-family: var(--font-family, 'Arial', sans-serif);
+    margin: 0;
+    padding: 0;
+}
+body[data-theme="light"] {
+    background-color: white;
+    color:rgb(57, 55, 55);
+
+}
+
+body[data-theme="dark"]  {
+    background-color: rgb(57, 55, 55);
+    color: white;
+    h1, h2, h3 {
+        color: white;
+    };
+    button{
+        background-color: white;
+        color:rgb(57, 55, 55);
+    };
+    td{
+        color: black;
+    }
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Heading text color for light and dark modes */
+
+
+/* Paragraph text color for light and dark modes */
+p {
+    color: var(--paragraph-text-color);
+}
+
+/* Table data text color for light and dark modes */
+
+button{
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 130px;
+}
+button:hover {
+    background-color: var(--secondary-color);
+}
