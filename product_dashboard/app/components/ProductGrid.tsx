@@ -14,10 +14,11 @@ export default function ProductGrid({ products }: ProductGridProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [pageInput, setPageInput] = useState('') // For entering a specific page number
-  const productsPerPage = 12
+  const productsPerPage = 20 // Change to 20 per page
 
+  // Ensure case-insensitive search and handle undefined or null product names
   const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.name?.toLowerCase().includes(searchTerm.toLowerCase()) || false
   )
 
   const indexOfLastProduct = currentPage * productsPerPage
@@ -31,7 +32,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
     if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= pageCount) {
       setCurrentPage(pageNumber)
     }
-    setPageInput('')
+    setPageInput('') // Reset the input after submitting
   }
 
   const renderPageNumbers = () => {
@@ -61,7 +62,7 @@ export default function ProductGrid({ products }: ProductGridProps) {
       </div>
 
       {/* Pagination Controls */}
-      <div className="mt-8 flex flex-col items-center space-y-4 ">
+      <div className="mt-8 flex flex-col items-center space-y-4">
         <div className="flex items-center space-x-2">
           {/* Previous Arrow */}
           <Button
