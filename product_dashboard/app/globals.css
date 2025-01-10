@@ -13,6 +13,7 @@ body {
 }
 
 @layer base {
+  /* Root color variables for light theme */
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -48,6 +49,8 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Dark mode color variables */
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -85,10 +88,41 @@ body {
 }
 
 @layer base {
+  /* Apply light theme by default */
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Automatically apply dark mode styles if dark mode is active */
+  .dark body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Additional universal styles */
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  /* Add light mode and dark mode specific styles for other elements */
+  header {
+    @apply bg-white text-gray-800;
+  }
+
+  /* Dark mode specific header styles */
+  .dark header {
+    @apply bg-black text-white;
+  }
+
+  /* Ensure components and utility classes switch correctly */
+  .dark .button {
+    @apply bg-primary-foreground text-primary;
   }
 }
